@@ -4,7 +4,7 @@ import { ChatContext } from "../context/ChatContext";
 
 const Search = () => {
   const { conversations, setConversations, setSelectedConversation } = useContext(ChatContext);
-  const allFriends = conversations.friends;
+  const allFriends = conversations
 
   const [searchText, setSearchText] = useState("");
   const [searchResults, setSearchResults] = useState([]);
@@ -26,25 +26,36 @@ const Search = () => {
 
     setSearchResults(minimalDataResults);
   };
-
   const startConversation = (friend) => {
-    // Create a new conversation object
-    const newConversation = {
-      id: friend.id,
-      name: friend.name,
-      picture: friend.picture,
-      chatlog: [],
-    };
-
-    // Add the new conversation to the conversations array
-    setConversations((prevConversations) => ({
-      ...prevConversations,
-      friends: [...prevConversations.friends, newConversation],
-    }));
-
-    // Set the new conversation as the selected conversation
-    setSelectedConversation(newConversation);
+    // Check if the conversation already exists in the conversations array
+    const existingConversation = conversations.find(
+      (conversation) => conversation.id === friend.id
+    );
+  
+    // If the conversation exists, set it as the selected conversation
+    if (existingConversation) {
+      setSelectedConversation(existingConversation);
+    } else {
+      // If the conversation does not exist, create a new conversation object
+      const newConversation = {
+        id: friend.id,
+        name: friend.name,
+        picture: friend.picture,
+        chatlog: [],
+      };
+  
+      // Add the new conversation to the conversations array
+      setConversations((prevConversations) => ({
+        ...prevConversations,
+        friends: [...prevConversations.friends, newConversation],
+      }));
+  
+      // Set the new conversation as the selected conversation
+      setSelectedConversation(newConversation);
+    }
   };
+  
+  
 
   return (
     <div className={styles.search}>

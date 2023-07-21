@@ -9,14 +9,14 @@ const Chats = () => {
 
   // Function to handle conversation selection
   const handleConversationSelect = (conversationId) => {
-    const selectedConv = conversations.friends.find((conv) => conv.id === conversationId);
+    const selectedConv = conversations.find((conv) => conv.id === conversationId);
     setSelectedConversation(selectedConv);
     console.log('selectedConv', selectedConv);
   };
 
   return (
     <div className="Chats">
-      {conversations.friends.map((conversation) => {
+      {conversations.map((conversation) => {
         const lastMessage = conversation.chatlog.length > 0
           ? conversation.chatlog[conversation.chatlog.length - 1].text
           : "No messages yet";

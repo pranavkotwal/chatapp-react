@@ -4,8 +4,8 @@ import dummyData from '../data/dummyData.json'
 const ChatContext = createContext();
 
 const ChatProvider = ({ children }) => {
-  
-  const [conversations, setConversations] = useState(dummyData);
+  const [conversations, setConversations] = useState(dummyData.friends); // Extract the friends array from the dummyData
+
   const [selectedConversation, setSelectedConversation] = useState(null);
 
   return (
