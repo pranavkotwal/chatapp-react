@@ -3,7 +3,7 @@ import styles from '../styles/home.module.css';
 import { ChatContext } from "../context/ChatContext";
 
 const Input = () => {
-  const { selectedConversation, setSelectedConversation } = useContext(ChatContext);
+  const { setSelectedConversation } = useContext(ChatContext);
   const [message, setMessage] = useState("");
 
   const handleMessageChange = (event) => {

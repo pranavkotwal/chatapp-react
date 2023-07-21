@@ -4,7 +4,7 @@ import { ChatContext } from "../context/ChatContext";
 
 
 const Navbar = () =>{
-    const {conversations,selectedConversation} = useContext(ChatContext)
+    const {selectedConversation} = useContext(ChatContext)
     console.log('selectedConversations',selectedConversation)
 
     return (
